@@ -16,7 +16,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap,
+      onTap: () => onTap(),
       child: Container(
         margin: const EdgeInsets.all(10),
         height: Get.size.width * 0.5,

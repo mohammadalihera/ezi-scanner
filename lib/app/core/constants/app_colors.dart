@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
+  static Color lightScaffoldBg = Color(0xfff6f7f9);
+  static Color greyCardColor = Color(0xfff4f4f4);
   // neutral colors
   static Color neutral0 = const Color(0xFFFFFFFF);
   static Color neutral100 = const Color(0xFFF4F7F6);
