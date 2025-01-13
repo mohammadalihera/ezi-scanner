@@ -1,0 +1,16 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git@vcs.technonext.com:TechnoNext/mobile-apps/qr-bar-code-scanner.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+	vscode-merge-base = origin/master
+[branch "ali_v1.0.0"]
+	vscode-merge-base = origin/master
+	remote = origin
+	merge = refs/heads/ali_v1.0.0

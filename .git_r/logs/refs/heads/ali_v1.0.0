@@ -1,0 +1,29 @@
+0000000000000000000000000000000000000000 5d9177095ff090b550a64262eae6a41c225fd2e5 Mohammad Ali <mohammad.ali@technonext.com> 1736246627 +0600	branch: Created from HEAD
+5d9177095ff090b550a64262eae6a41c225fd2e5 e141dfd4d55f9ed5ab81c95e477745fc51034148 Mohammad Ali <mohammad.ali@technonext.com> 1736246650 +0600	commit: add dashboard and history design
+e141dfd4d55f9ed5ab81c95e477745fc51034148 f42d91eef64184db2c94f285951074e0d42a16e8 Mohammad Ali <mohammad.ali@technonext.com> 1736249276 +0600	commit: add necessary module
+f42d91eef64184db2c94f285951074e0d42a16e8 fb77542c625d2104130eca2246999d122a3bc5c0 Mohammad Ali <mohammad.ali@technonext.com> 1736308241 +0600	commit: chnage the name
+fb77542c625d2104130eca2246999d122a3bc5c0 076a3bf8de64000bf05c8c202498cb10e0601a41 Mohammad Ali <mohammad.ali@technonext.com> 1736308298 +0600	commit: add business card details
+076a3bf8de64000bf05c8c202498cb10e0601a41 c190d83eb2c3b0f33210f77287700ac09ae803cb Mohammad Ali <mohammad.ali@technonext.com> 1736313927 +0600	commit: add details view
+c190d83eb2c3b0f33210f77287700ac09ae803cb e2e973e80dad233a035d44cac5341711f099cc94 Mohammad Ali <mohammad.ali@technonext.com> 1736327688 +0600	commit: add the module
+e2e973e80dad233a035d44cac5341711f099cc94 1f16635133711bbd9f0e6980f247d3c03f39e7c6 Mohammad Ali <mohammad.ali@technonext.com> 1736335588 +0600	commit: complete website details page
+1f16635133711bbd9f0e6980f247d3c03f39e7c6 25151e4424abb46e6fc2538e7a0d07848bbb47c1 Mohammad Ali <mohammad.ali@technonext.com> 1736335777 +0600	commit (merge): Merge remote-tracking branch 'origin/sayed_v1.0.0' into ali_v1.0.0
+25151e4424abb46e6fc2538e7a0d07848bbb47c1 c9bf16ddb1fb5c3434932872751db58343af4378 Mohammad Ali <mohammad.ali@technonext.com> 1736336944 +0600	commit: merged with sayed
+c9bf16ddb1fb5c3434932872751db58343af4378 eb52b75d3056ed73b023c19458c2552478a5d097 Mohammad Ali <mohammad.ali@technonext.com> 1736336963 +0600	commit: merged with sayed
+eb52b75d3056ed73b023c19458c2552478a5d097 2534001945f3044718fe7b7dd3eb37310b03661d Mohammad Ali <mohammad.ali@technonext.com> 1736402332 +0600	commit: complete website details
+2534001945f3044718fe7b7dd3eb37310b03661d 0572499de0bd6367e346e3f768ab9d0ce49e2656 Mohammad Ali <mohammad.ali@technonext.com> 1736405569 +0600	commit: add location details
+0572499de0bd6367e346e3f768ab9d0ce49e2656 efff48b40344d23b81b45f741d273fa74a6086c8 Mohammad Ali <mohammad.ali@technonext.com> 1736405622 +0600	commit (merge): Merge remote-tracking branch 'origin/sayed_v1.0.0' into ali_v1.0.0
+efff48b40344d23b81b45f741d273fa74a6086c8 342216939531a2ad8bb2b9f81e5a923372f67bde Mohammad Ali <mohammad.ali@technonext.com> 1736418146 +0600	commit: complete web url details
+342216939531a2ad8bb2b9f81e5a923372f67bde 8ea4ec0419eacc2b05a7ccf13741d936b5ae72a7 Mohammad Ali <mohammad.ali@technonext.com> 1736419770 +0600	commit: complete location details
+8ea4ec0419eacc2b05a7ccf13741d936b5ae72a7 df52372d74dd3bc140d5e3e9822d97e42bbd48e7 Mohammad Ali <mohammad.ali@technonext.com> 1736419881 +0600	commit (merge): Merge remote-tracking branch 'origin/sayed_v1.0.0' into ali_v1.0.0
+df52372d74dd3bc140d5e3e9822d97e42bbd48e7 386ef05d516022637eaf92fcb0eec3cf5b369590 Mohammad Ali <mohammad.ali@technonext.com> 1736420562 +0600	commit (merge): Merge remote-tracking branch 'origin/sayed_v1.0.0' into ali_v1.0.0
+386ef05d516022637eaf92fcb0eec3cf5b369590 a53db92478a3c0c47f9761e9f246039da89dbde6 Mohammad Ali <mohammad.ali@technonext.com> 1736423692 +0600	commit: fix overflow
+a53db92478a3c0c47f9761e9f246039da89dbde6 09e53402fe6023173e360f020f044adeb4bfc4b1 Mohammad Ali <mohammad.ali@technonext.com> 1736657413 +0600	commit (merge): Merge remote-tracking branch 'origin/sayed_v1.0.0' into ali_v1.0.0
+09e53402fe6023173e360f020f044adeb4bfc4b1 31180f0f4b9e79ac8f05f8520dc83d4fb4e1074d Mohammad Ali <mohammad.ali@technonext.com> 1736672233 +0600	commit: add download option
+31180f0f4b9e79ac8f05f8520dc83d4fb4e1074d 7f213fe5ce65cb167b9d079e7f657e48072a78e2 Mohammad Ali <mohammad.ali@technonext.com> 1736672262 +0600	commit (merge): Merge remote-tracking branch 'origin/qr_code_implementation' into ali_v1.0.0
+7f213fe5ce65cb167b9d079e7f657e48072a78e2 a5719fb8b50097345335b4305b33003ccddfcfdf Mohammad Ali <mohammad.ali@technonext.com> 1736673315 +0600	commit (merge): Merge remote-tracking branch 'origin/sayed_v1.0.0' into ali_v1.0.0
+a5719fb8b50097345335b4305b33003ccddfcfdf b6d494b823aa025a2eaf1cf5385bdba76e76d86e Mohammad Ali <mohammad.ali@technonext.com> 1736674239 +0600	commit: update business details
+b6d494b823aa025a2eaf1cf5385bdba76e76d86e c5427ecf0f43eaa416ca503aabf6e3fd812500f6 Mohammad Ali <mohammad.ali@technonext.com> 1736683878 +0600	commit: add calendar event
+c5427ecf0f43eaa416ca503aabf6e3fd812500f6 dbd134d88a5908d08f5ee73bf789519e1b50182f Mohammad Ali <mohammad.ali@technonext.com> 1736743096 +0600	commit: complete calendar event
+dbd134d88a5908d08f5ee73bf789519e1b50182f 2e200dbfef763140b524373f6da92842a294bd57 Mohammad Ali <mohammad.ali@technonext.com> 1736743353 +0600	commit: remove un codes
+2e200dbfef763140b524373f6da92842a294bd57 d718e762534ce408e6dc74cafa8753f026fb5cc6 Mohammad Ali <mohammad.ali@technonext.com> 1736752752 +0600	commit: complete contact details
+d718e762534ce408e6dc74cafa8753f026fb5cc6 e1dc305fdc95eb0abc7eaf8ec8dc2a320b3dcc1e Mohammad Ali <mohammad.ali@technonext.com> 1736765924 +0600	commit: wifi details complete
