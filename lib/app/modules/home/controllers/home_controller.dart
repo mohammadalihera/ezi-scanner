@@ -1,6 +1,6 @@
-import 'package:easy_scanner/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:easy_scanner/app/modules/history/views/history_view.dart';
-import 'package:easy_scanner/app/modules/settings/views/settings_view.dart';
+import 'package:easy_scanner/app/core/constants/app_string_constants.dart';
+import 'package:easy_scanner/app/core/services/storage_service.dart';
+import 'package:easy_scanner/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +12,10 @@ class HomeController extends GetxController {
   void changeTab(int index) {
     currentIndex.value = index;
     pageController.animateToPage(index,
-        duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
   }
 
-  final List<Widget> screens = [DashboardView(), HistoryView(), SettingsView()];
+  onBusinessCardScan() async {
+    Get.toNamed(Routes.BUSINESS_CARD_DETAILS);
+  }
 }
