@@ -1,15 +1,18 @@
 import 'package:easy_scanner/app/core/constants/gap_constants.dart';
 import 'package:easy_scanner/app/core/widgets/cutom_widget_elements.dart';
 import 'package:easy_scanner/app/modules/home/views/widgets/custome_card.dart';
+import 'package:easy_scanner/app/modules/scanner_details/pages/image_scanner_page.dart';
 import 'package:easy_scanner/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart' as ms;
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,18 @@ class HomeView extends GetView<HomeController> {
                 Expanded(
                   child: CustomCard(
                     level: 'Scan \n QR Code',
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.BARCODE_SCANNER, arguments: "qrcode")
+                          ?.then((value) {
+                        if (value != null) {
+                          ms.Barcode barcode = value as ms.Barcode;
+                          Get.toNamed(
+                            Routes.SCANNER_DETAILS,
+                            arguments: barcode,
+                          );
+                        }
+                      });
+                    },
                     icon: const Icon(
                       Icons.qr_code_scanner,
                       color: Colors.blue,
@@ -35,7 +49,18 @@ class HomeView extends GetView<HomeController> {
                 Expanded(
                   child: CustomCard(
                     level: 'Scan \n BAR Code',
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.BARCODE_SCANNER, arguments: "barcode")
+                          ?.then((value) {
+                        if (value != null) {
+                          ms.Barcode barcode = value as ms.Barcode;
+                          Get.toNamed(
+                            Routes.SCANNER_DETAILS,
+                            arguments: barcode,
+                          );
+                        }
+                      });
+                    },
                     icon: const Icon(
                       Icons.view_quilt_sharp,
                       color: Colors.blue,
@@ -50,7 +75,7 @@ class HomeView extends GetView<HomeController> {
                 Expanded(
                   child: CustomCard(
                     level: 'Scan \n Business Card',
-                    onTap: () {},
+                    onTap: controller.onBusinessCardScan,
                     icon: const Icon(
                       Icons.view_comfortable_outlined,
                       color: Colors.blue,
@@ -61,7 +86,9 @@ class HomeView extends GetView<HomeController> {
                 Expanded(
                   child: CustomCard(
                     level: 'Scan Image',
-                    onTap: () {},
+                    onTap: () async {
+                      await controller.pickAndScanImage();
+                    },
                     icon: const Icon(
                       Icons.image,
                       color: Colors.blue,
@@ -75,8 +102,10 @@ class HomeView extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomCard(
-                  level: 'Generate \n QR Code',
-                  onTap: () {},
+                  level: 'Generate \n QR or Barcode',
+                  onTap: () {
+                    Get.toNamed(Routes.CREATE_QR_CODE);
+                  },
                   icon: const Icon(
                     Icons.qr_code,
                     color: Colors.blue,
