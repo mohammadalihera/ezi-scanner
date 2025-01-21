@@ -1,22 +1,23 @@
 import 'package:easy_scanner/app/core/constants/app_text_styles.dart';
 import 'package:easy_scanner/app/core/constants/gap_constants.dart';
+import 'package:easy_scanner/app/core/extensions/string_validation_extensions.dart';
 import 'package:easy_scanner/app/core/widgets/barcode_view.dart';
 import 'package:easy_scanner/app/core/widgets/cutom_widget_elements.dart';
 import 'package:easy_scanner/app/core/widgets/label_value_widget.dart';
 import 'package:easy_scanner/app/data/models/businesss_card_model.dart';
 import 'package:flutter/material.dart';
-import 'package:barcode_widget/barcode_widget.dart' as b_w;
 
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-class SmsDetailsView extends StatelessWidget {
+class DefaultDetailsView extends StatelessWidget {
   final Barcode barcode;
-  final SmsData smsData;
-  const SmsDetailsView({
+  final String data;
+
+  const DefaultDetailsView({
     super.key,
     required this.barcode,
-    required this.smsData,
+    required this.data,
   });
   @override
   Widget build(BuildContext context) {
@@ -38,45 +39,54 @@ class SmsDetailsView extends StatelessWidget {
                   vertical20,
                   Row(
                     children: [
-                      const Icon(Icons.system_security_update_good_outlined, size: 25),
+                      const Icon(Icons.text_snippet, size: 25),
                       horizontal4,
                       Text(
-                        'SMS Details',
+                        'Details',
                         style: AppTextStyles.h4Bold,
                       ),
                     ],
                   ),
                   vertical12,
                   LabelValueWidget(
-                    label: "Phone",
-                    value: smsData.phone ?? 'N/A',
-                    icon: Icon(Icons.phone),
-                  ),
-                  vertical4,
-                  LabelValueWidget(
-                    label: "SMS",
-                    value: smsData.sms ?? 'N/A',
-                    icon: Icon(Icons.sms_outlined),
+                    label: "Text",
+                    value: data,
                   ),
                   vertical20,
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomWidgetElements.dialButton(smsData.phone!),
+                      if (data.isValidPhoneNumber)
+                        Column(
+                          children: [
+                            CustomWidgetElements.dialButton(data),
+                            vertical12,
+                            CustomWidgetElements.sendSms(phone: data),
+                            vertical12,
+                            CustomWidgetElements.createContact(
+                              BusinessCardModel(phone: data),
+                            ),
+                            vertical12,
+                          ],
+                        ),
+                      if (data.isValidEmail)
+                        Column(
+                          children: [
+                            CustomWidgetElements.sendEmail(email: data),
+                            vertical12,
+                          ],
+                        ),
+                      if (data.isValidUrl)
+                        Column(
+                          children: [
+                            CustomWidgetElements.browseButton(context, data),
+                            vertical12,
+                          ],
+                        ),
+                      CustomWidgetElements.copyButton(data.toString()),
                       vertical12,
-                      CustomWidgetElements.sendSms(
-                        phone: smsData.phone!,
-                        sms: smsData.sms,
-                      ),
-                      vertical12,
-                      CustomWidgetElements.createContact(
-                        BusinessCardModel(phone: smsData.phone),
-                      ),
-                      vertical12,
-                      CustomWidgetElements.copyButton(smsData.toString()),
-                      vertical12,
-                      CustomWidgetElements.shareButton(smsData.toString()),
+                      CustomWidgetElements.shareButton(data.toString()),
                     ],
                   ),
                 ],

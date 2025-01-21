@@ -19,14 +19,13 @@ class EventData {
   }
 
   static EventData parseEvent(String eventString) {
-    final lines =
-        eventString.split('\n').where((line) => line.isNotEmpty).toList();
+    final lines = eventString.split('\n').where((line) => line.isNotEmpty).toList();
 
-    String? title;
-    DateTime? startDate;
-    DateTime? endDate;
-    String? location;
-    String? description;
+    String title = '';
+    DateTime startDate = DateTime.now();
+    DateTime endDate = DateTime.now();
+    String location = '';
+    String description = '';
 
     for (var line in lines) {
       if (line.startsWith('SUMMARY:')) {
@@ -40,14 +39,6 @@ class EventData {
       } else if (line.startsWith('DESCRIPTION:')) {
         description = line.substring(12);
       }
-    }
-
-    if (title == null ||
-        startDate == null ||
-        endDate == null ||
-        location == null ||
-        description == null) {
-      throw Exception('Invalid event data');
     }
 
     return EventData(

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:wifi_iot/wifi_iot.dart';
+// import 'package:wifi_iot/wifi_iot.dart';
 
 class CommonServices {
   static void copyToClipboard(String url) {
@@ -35,16 +35,16 @@ class CommonServices {
     }
   }
 
-  static Future<void> connectToWifi(WifiData wifiData) async {
-    final isConnected = await WiFiForIoTPlugin.connect(wifiData.name,
-        password: wifiData.password,
-        security:
-            wifiData.type == 'WPA' ? NetworkSecurity.WPA : NetworkSecurity.WEP);
+  // static Future<void> connectToWifi(WifiData wifiData) async {
+  //   final isConnected = await WiFiForIoTPlugin.connect(wifiData.name,
+  //       password: wifiData.password,
+  //       security:
+  //           wifiData.type == 'WPA' ? NetworkSecurity.WPA : NetworkSecurity.WEP);
 
-    if (isConnected) {
-      Get.snackbar('Connect To Wifi', '${wifiData.name} connect successfully');
-    } else {
-      Get.snackbar('Connect To Wifi', '${wifiData.name} failed to connect');
-    }
-  }
+  //   if (isConnected) {
+  //     Get.snackbar('Connect To Wifi', '${wifiData.name} connect successfully');
+  //   } else {
+  //     Get.snackbar('Connect To Wifi', '${wifiData.name} failed to connect');
+  //   }
+  // }
 }

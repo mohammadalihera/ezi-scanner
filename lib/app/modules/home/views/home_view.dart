@@ -1,10 +1,12 @@
 import 'package:easy_scanner/app/core/constants/gap_constants.dart';
 import 'package:easy_scanner/app/core/widgets/cutom_widget_elements.dart';
 import 'package:easy_scanner/app/modules/home/views/widgets/custome_card.dart';
+import 'package:easy_scanner/app/modules/scanner_details/pages/image_scanner_page.dart';
 import 'package:easy_scanner/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart' as ms;
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -26,11 +28,9 @@ class HomeView extends GetView<HomeController> {
                   child: CustomCard(
                     level: 'Scan \n QR Code',
                     onTap: () {
-                      Get.toNamed(Routes.BARCODE_SCANNER, arguments: "qrcode")
-                          ?.then((value) {
+                      Get.toNamed(Routes.BARCODE_SCANNER, arguments: "qrcode")?.then((value) {
                         if (value != null) {
                           ms.Barcode barcode = value as ms.Barcode;
-                          print("------------- ---------- ${barcode.rawValue}");
                           Get.toNamed(
                             Routes.SCANNER_DETAILS,
                             arguments: barcode,
@@ -49,8 +49,7 @@ class HomeView extends GetView<HomeController> {
                   child: CustomCard(
                     level: 'Scan \n BAR Code',
                     onTap: () {
-                      Get.toNamed(Routes.BARCODE_SCANNER, arguments: "barcode")
-                          ?.then((value) {
+                      Get.toNamed(Routes.BARCODE_SCANNER, arguments: "barcode")?.then((value) {
                         if (value != null) {
                           ms.Barcode barcode = value as ms.Barcode;
                           Get.toNamed(
@@ -85,7 +84,9 @@ class HomeView extends GetView<HomeController> {
                 Expanded(
                   child: CustomCard(
                     level: 'Scan Image',
-                    onTap: () {},
+                    onTap: () async {
+                      await controller.pickAndScanImage();
+                    },
                     icon: const Icon(
                       Icons.image,
                       color: Colors.blue,

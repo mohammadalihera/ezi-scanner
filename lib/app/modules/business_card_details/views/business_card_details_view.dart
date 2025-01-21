@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:easy_scanner/app/core/constants/app_colors.dart';
 import 'package:easy_scanner/app/core/constants/gap_constants.dart';
-import 'package:easy_scanner/app/core/extensions/date_extensions.dart';
-import 'package:easy_scanner/app/core/services/image_picker_service.dart';
 import 'package:easy_scanner/app/core/widgets/cutom_widget_elements.dart';
 import 'package:easy_scanner/app/core/widgets/label_value_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_scanner/app/core/extensions/string_validation_extensions.dart';
 
 import 'package:get/get.dart';
 
@@ -18,25 +16,21 @@ class BusinessCardDetailsView extends GetView<BusinessCardDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomWidgetElements.commonAppBar(
-          title: 'Business Card',
-          back: true,
-          actionWidgets: [
-            Padding(
-              padding: const EdgeInsets.only(right: size10),
-              child: GestureDetector(
-                onTap: controller.pickImageAndScanText,
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.blue,
-                  size: 30,
-                ),
-              ),
+      appBar: CustomWidgetElements.commonAppBar(title: 'Business Card', back: true, actionWidgets: [
+        Padding(
+          padding: const EdgeInsets.only(right: size10),
+          child: GestureDetector(
+            onTap: controller.pickImageAndScanText,
+            child: const Icon(
+              Icons.add,
+              color: Colors.blue,
+              size: 30,
             ),
-          ]),
+          ),
+        ),
+      ]),
       body: Obx(() {
-        if (controller.businessCardModel.value != null &&
-            controller.imagePath.value != null) {
+        if (controller.businessCardModel.value != null && controller.imagePath.value != null) {
           final cardModel = controller.businessCardModel.value!;
 
           return Padding(
@@ -54,8 +48,7 @@ class BusinessCardDetailsView extends GetView<BusinessCardDetailsController> {
                       width: double.infinity,
                       height: Get.width * 0.5,
                       padding: EdgeInsets.all(10),
-                      decoration:
-                          CustomWidgetElements.commonDecorationWithShadow(),
+                      decoration: CustomWidgetElements.commonDecorationWithShadow(),
                       child: Stack(
                         children: [
                           Positioned.fill(
@@ -91,28 +84,41 @@ class BusinessCardDetailsView extends GetView<BusinessCardDetailsController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          LabelValueWidget(
-                              label: "Name", value: cardModel.name ?? 'N/A'),
-                          LabelValueWidget(
-                              label: "Phone", value: cardModel.phone ?? 'N/A'),
-                          LabelValueWidget(
-                              label: "Email", value: cardModel.email ?? 'N/A'),
-                          LabelValueWidget(
-                              label: "Address",
-                              value: cardModel.address ?? 'N/A'),
-                          LabelValueWidget(
-                              label: "Company",
-                              value: cardModel.company ?? 'N/A'),
-                          LabelValueWidget(
-                              label: "Website",
-                              value: cardModel.website ?? 'N/A'),
+                          LabelValueWidget(label: "Name", value: cardModel.name ?? 'N/A'),
+                          LabelValueWidget(label: "Phone", value: cardModel.phone ?? 'N/A'),
+                          LabelValueWidget(label: "Email", value: cardModel.email ?? 'N/A'),
+                          LabelValueWidget(label: "Address", value: cardModel.address ?? 'N/A'),
+                          LabelValueWidget(label: "Company", value: cardModel.company ?? 'N/A'),
+                          LabelValueWidget(label: "Website", value: cardModel.website ?? 'N/A'),
                         ],
                       ),
                     ),
                     vertical16,
-
-                    CustomWidgetElements.createContact(cardModel),
-                    vertical12,
+                    if (cardModel.phone?.isValidPhoneNumber == true)
+                      Column(
+                        children: [
+                          CustomWidgetElements.dialButton(cardModel.phone!),
+                          vertical12,
+                          CustomWidgetElements.sendSms(phone: cardModel.phone!),
+                          vertical12,
+                          CustomWidgetElements.createContact(cardModel),
+                          vertical12,
+                        ],
+                      ),
+                    if (cardModel.email?.isValidEmail == true)
+                      Column(
+                        children: [
+                          CustomWidgetElements.sendEmail(email: cardModel.email!),
+                          vertical12,
+                        ],
+                      ),
+                    if (cardModel.website?.isValidUrl == true)
+                      Column(
+                        children: [
+                          CustomWidgetElements.browseButton(context, cardModel.website!),
+                          vertical12,
+                        ],
+                      ),
                     CustomWidgetElements.copyButton(cardModel.toString()),
                     vertical12,
                     CustomWidgetElements.shareButton(cardModel.toString()),
@@ -130,9 +136,7 @@ class BusinessCardDetailsView extends GetView<BusinessCardDetailsController> {
               alignment: Alignment.center,
               child: Obx(() {
                 return GestureDetector(
-                  onTap: controller.inProgress.value
-                      ? null
-                      : controller.pickImageAndScanText,
+                  onTap: controller.inProgress.value ? null : controller.pickImageAndScanText,
                   child: Container(
                     width: 70,
                     height: 70,

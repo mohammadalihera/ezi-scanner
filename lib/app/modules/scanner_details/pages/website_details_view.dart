@@ -7,12 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as b_w;
 
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class WebsiteDetailsView extends StatelessWidget {
   final String url;
-  final b_w.BarcodeWidget barcode;
-  const WebsiteDetailsView(
-      {super.key, required this.url, required this.barcode});
+  final Barcode barcode;
+  const WebsiteDetailsView({
+    super.key,
+    required this.url,
+    required this.barcode,
+  });
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,9 +57,9 @@ class WebsiteDetailsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomWidgetElements.copyButton(url),
-                      vertical12,
                       CustomWidgetElements.browseButton(context, url),
+                      vertical12,
+                      CustomWidgetElements.copyButton(url),
                       vertical12,
                       CustomWidgetElements.shareButton(url),
                     ],

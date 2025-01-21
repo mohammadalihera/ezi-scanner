@@ -22,7 +22,6 @@ abstract class ImagePickerService {
   }
 
   /// Pick image from camera
-
   static Future<File?> pickImageFromCamera() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
     if (image != null) {
@@ -32,7 +31,6 @@ abstract class ImagePickerService {
   }
 
   static Future<String?> cropImage({
-    // required BuildContext context,
     required File pickedFile,
   }) async {
     final croppedFile = await ImageCropper().cropImage(
@@ -82,8 +80,7 @@ abstract class ImagePickerService {
     required File imageFile,
     required String fileName,
   }) async {
-    if (await Permission.storage.request().isGranted ||
-        await Permission.photos.request().isGranted) {
+    if (await Permission.storage.request().isGranted || await Permission.photos.request().isGranted) {
       try {
         // Get default storage path
         String storagePath = await getDefaultStoragePath();
@@ -129,14 +126,29 @@ abstract class ImagePickerService {
 // Refresh the gallery to make the image visible
   static Future<void> refreshGallery(String filePath) async {
     try {
-      final result = await Process.run('am', [
-        'broadcast',
-        '-a',
-        'android.intent.action.MEDIA_SCANNER_SCAN_FILE',
-        '-d',
-        'file://$filePath'
-      ]);
+      final result = await Process.run(
+          'am', ['broadcast', '-a', 'android.intent.action.MEDIA_SCANNER_SCAN_FILE', '-d', 'file://$filePath']);
     } catch (e) {}
+  }
+
+  static Future<String?> saveImageToAppDirectory(File imageFile) async {
+    try {
+      // Get the app's documents directory
+      final directory = await getApplicationDocumentsDirectory();
+
+      final imageName = imageFile.path.split('/').last;
+
+      // Create a unique file path for the image
+      final imagePath = '${directory.path}/$imageName';
+
+      // Save the image file to the path
+      final savedImage = await imageFile.copy(imagePath);
+
+      return savedImage.path;
+    } catch (e) {
+      throw Exception('Error saving image: $e');
+      return null;
+    }
   }
 }
 

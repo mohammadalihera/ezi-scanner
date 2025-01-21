@@ -1,18 +1,17 @@
 import 'package:easy_scanner/app/core/constants/app_text_styles.dart';
 import 'package:easy_scanner/app/core/constants/gap_constants.dart';
-import 'package:easy_scanner/app/core/extensions/date_extensions.dart';
 import 'package:easy_scanner/app/core/widgets/barcode_view.dart';
 import 'package:easy_scanner/app/core/widgets/cutom_widget_elements.dart';
 import 'package:easy_scanner/app/core/widgets/label_value_widget.dart';
 import 'package:easy_scanner/app/data/models/businesss_card_model.dart';
-import 'package:easy_scanner/app/data/models/event_data.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as b_w;
 
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ContactDetailsView extends StatelessWidget {
-  final b_w.BarcodeWidget barcode;
+  final Barcode barcode;
   final BusinessCardModel contactData;
   const ContactDetailsView({
     super.key,
@@ -83,16 +82,16 @@ class ContactDetailsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomWidgetElements.dialButton(contactData),
+                      CustomWidgetElements.dialButton(contactData.phone ?? ""),
                       vertical12,
-                      CustomWidgetElements.sendSms(contactData),
+                      CustomWidgetElements.sendSms(phone: contactData.phone ?? ""),
                       vertical12,
                       CustomWidgetElements.createContact(contactData),
                       vertical12,
                       if (contactData.email != null)
                         Column(
                           children: [
-                            CustomWidgetElements.sendEmail(contactData),
+                            CustomWidgetElements.sendEmail(email: contactData.email!),
                             vertical12,
                           ],
                         ),

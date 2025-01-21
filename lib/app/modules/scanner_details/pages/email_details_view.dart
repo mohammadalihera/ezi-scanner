@@ -5,18 +5,17 @@ import 'package:easy_scanner/app/core/widgets/cutom_widget_elements.dart';
 import 'package:easy_scanner/app/core/widgets/label_value_widget.dart';
 import 'package:easy_scanner/app/data/models/businesss_card_model.dart';
 import 'package:flutter/material.dart';
-import 'package:barcode_widget/barcode_widget.dart' as b_w;
 
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-class SmsDetailsView extends StatelessWidget {
+class EmailDetailsView extends StatelessWidget {
   final Barcode barcode;
-  final SmsData smsData;
-  const SmsDetailsView({
+  final EmailData emailData;
+  const EmailDetailsView({
     super.key,
     required this.barcode,
-    required this.smsData,
+    required this.emailData,
   });
   @override
   Widget build(BuildContext context) {
@@ -38,45 +37,45 @@ class SmsDetailsView extends StatelessWidget {
                   vertical20,
                   Row(
                     children: [
-                      const Icon(Icons.system_security_update_good_outlined, size: 25),
+                      const Icon(Icons.email_outlined, size: 25),
                       horizontal4,
                       Text(
-                        'SMS Details',
+                        'Email Details',
                         style: AppTextStyles.h4Bold,
                       ),
                     ],
                   ),
                   vertical12,
                   LabelValueWidget(
-                    label: "Phone",
-                    value: smsData.phone ?? 'N/A',
-                    icon: Icon(Icons.phone),
+                    label: "Email",
+                    value: emailData.email ?? 'N/A',
+                    icon: Icon(Icons.email),
                   ),
                   vertical4,
                   LabelValueWidget(
-                    label: "SMS",
-                    value: smsData.sms ?? 'N/A',
-                    icon: Icon(Icons.sms_outlined),
+                    label: "Sub",
+                    value: emailData.sub ?? 'N/A',
+                    // icon: Icon(Icons.subject),
+                  ),
+                  LabelValueWidget(
+                    label: "Body",
+                    value: emailData.sub ?? 'N/A',
+                    // icon: Icon(Icons.description),
                   ),
                   vertical20,
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomWidgetElements.dialButton(smsData.phone!),
-                      vertical12,
-                      CustomWidgetElements.sendSms(
-                        phone: smsData.phone!,
-                        sms: smsData.sms,
+                      CustomWidgetElements.sendEmail(
+                        email: emailData.email!,
+                        sub: emailData.sub,
+                        body: emailData.body,
                       ),
                       vertical12,
-                      CustomWidgetElements.createContact(
-                        BusinessCardModel(phone: smsData.phone),
-                      ),
+                      CustomWidgetElements.copyButton(emailData.toString()),
                       vertical12,
-                      CustomWidgetElements.copyButton(smsData.toString()),
-                      vertical12,
-                      CustomWidgetElements.shareButton(smsData.toString()),
+                      CustomWidgetElements.shareButton(emailData.toString()),
                     ],
                   ),
                 ],

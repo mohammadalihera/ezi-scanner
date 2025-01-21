@@ -16,9 +16,7 @@ abstract class ContactService {
         ..name.last = lastName
         ..phones = [Phone(businessCardModel.phone ?? '')]
         ..emails = [Email(businessCardModel.email ?? '')]
-        ..organizations = [
-          Organization(company: businessCardModel.company ?? '')
-        ];
+        ..organizations = [Organization(company: businessCardModel.company ?? '')];
       final contact = await FlutterContacts.openExternalInsert(newContact);
     }
   }
@@ -30,24 +28,23 @@ abstract class ContactService {
     } catch (_) {}
   }
 
-  static Future<void> sendSMS(String number) async {
+  static Future<void> sendSMS(String number, String? sms) async {
     try {
       final uri = Uri(
         scheme: 'sms',
         path: number,
-        queryParameters: {'body': ''},
+        queryParameters: {'body': sms ?? ''},
       );
       await launchUrl(uri);
     } catch (_) {}
   }
 
-  static Future<void> sendEmail(String email) async {
+  static Future<void> sendEmail({required String email, String? sub, String? body}) async {
     try {
       final uri = Uri(
         scheme: 'mailto',
         path: email,
-        query:
-            'subject=${Uri.encodeComponent('')}&body=${Uri.encodeComponent('Dear')}',
+        query: 'subject=${Uri.encodeComponent(sub ?? '')}&body=${Uri.encodeComponent(body ?? 'Dear')}',
       );
 
       await launchUrl(uri);

@@ -9,9 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as b_w;
 
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class CalendarEventDetailsView extends StatelessWidget {
-  final b_w.BarcodeWidget barcode;
+  final Barcode barcode;
   final EventData eventData;
   const CalendarEventDetailsView({
     super.key,

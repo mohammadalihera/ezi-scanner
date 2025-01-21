@@ -10,9 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as b_w;
 
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class WifiDetailsView extends StatelessWidget {
-  final b_w.BarcodeWidget barcode;
+  final Barcode barcode;
   final WifiData wifiData;
   const WifiDetailsView({
     super.key,
@@ -39,7 +40,7 @@ class WifiDetailsView extends StatelessWidget {
                   vertical20,
                   Row(
                     children: [
-                      const Icon(Icons.event, size: 25),
+                      const Icon(Icons.wifi_find_outlined, size: 25),
                       horizontal4,
                       Text(
                         'Wifi Details',
@@ -47,6 +48,7 @@ class WifiDetailsView extends StatelessWidget {
                       ),
                     ],
                   ),
+                  vertical8,
                   LabelValueWidget(
                     label: "Name",
                     value: wifiData.name,
@@ -67,7 +69,7 @@ class WifiDetailsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomWidgetElements.connectWifi(wifiData),
+                      CustomWidgetElements.copyWifiPassword(wifiData),
                       vertical12,
                       CustomWidgetElements.copyButton(wifiData.toString()),
                       vertical12,

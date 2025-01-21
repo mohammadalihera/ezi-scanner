@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+
 import '../controllers/barcode_scanner_controller.dart';
 
 class BarcodeScannerView extends GetView<BarcodeScannerController> {
   const BarcodeScannerView({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class BarcodeScannerView extends GetView<BarcodeScannerController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${controller.scannerType == "qrcode" ? "QR":"Barcode"} Scanner'),
+        title: Text('${controller.scannerType == "qrcode" ? "QR" : "Barcode"} Scanner'),
         actions: [
           IconButton(
             icon: const Icon(Icons.flash_on),
@@ -43,13 +44,18 @@ class BarcodeScannerView extends GetView<BarcodeScannerController> {
             overlayBuilder: (context, constraints) {
               return QRScannerOverlay(scanAreaSize: controller.scanAreaSize);
             },
+            placeholderBuilder: (p0, p1) {
+              return Center(
+                child: Text("loading.."),
+                // child: CircularProgressIndicator(),
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
-
 
 class QRScannerOverlay extends StatelessWidget {
   final double scanAreaSize;
@@ -138,4 +144,3 @@ class ScanAreaClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-

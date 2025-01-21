@@ -1,23 +1,34 @@
+import 'package:easy_scanner/app/core/services/storage_service.dart';
+import 'package:easy_scanner/app/data/models/barcode_timestamp_model.dart';
+import 'package:easy_scanner/app/data/models/businesss_card_model.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class HistoryController extends GetxController {
-  //TODO: Implement HistoryController
+  Rx<int> currentTab = 0.obs;
+  PageController pageController = PageController();
 
-  final count = 0.obs;
+  Rx<List<BarcodeTimeStampModel>> barcodeTimeStampList = Rx([]);
+  Rx<List<BusinessCardModel>> businessCardList = Rx([]);
+
+  List<String> tabTitle = [
+    'Barcode',
+    'Card',
+  ];
+
   @override
-  void onInit() {
+  onInit() {
     super.onInit();
+    fetchHistoryData();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  onTabChange(int index) {
+    currentTab.value = index;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  fetchHistoryData() {
+    barcodeTimeStampList.value = StorageService().getBarcodeList();
+    businessCardList.value = StorageService().getBusinessCardList();
   }
-
-  void increment() => count.value++;
 }

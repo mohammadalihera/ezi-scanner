@@ -18,7 +18,7 @@ class CustomWidgetElements {
     List<Widget>? actionWidgets,
   }) {
     return AppBar(
-      elevation: 3,
+      // elevation: 3,
       backgroundColor: Colors.white,
       shadowColor: Colors.grey[50],
       foregroundColor: Colors.white,
@@ -58,8 +58,9 @@ class CustomWidgetElements {
       boxShadow: const [
         BoxShadow(
           color: Colors.black12,
-          blurRadius: 8,
-          offset: Offset(2, 2),
+          blurRadius: 2,
+          blurStyle: BlurStyle.normal,
+          offset: Offset(3, 3),
         ),
       ],
     );
@@ -135,38 +136,40 @@ class CustomWidgetElements {
     );
   }
 
-  static Widget dialButton(BusinessCardModel businessCardModel) {
+  static Widget dialButton(String phone) {
     return AppButton(
       height: 50,
       width: Get.width,
-      name: 'Dial ${businessCardModel.phone}',
-      onTap: () async =>
-          await ContactService.dialNumber(businessCardModel.phone!),
+      name: 'Dial $phone',
+      onTap: () async => await ContactService.dialNumber(phone),
       icon: const Icon(Icons.phone),
       textColor: Colors.white,
       buttonColor: Colors.red[400],
     );
   }
 
-  static Widget sendSms(BusinessCardModel businessCardModel) {
+  static Widget sendSms({required String phone, String? sms}) {
     return AppButton(
       height: 50,
       width: Get.width,
       name: 'Send SMS',
-      onTap: () async => await ContactService.sendSMS(businessCardModel.phone!),
+      onTap: () async => await ContactService.sendSMS(phone, sms),
       icon: const Icon(Icons.sms_outlined),
       textColor: Colors.white,
       buttonColor: Colors.orange[300],
     );
   }
 
-  static Widget sendEmail(BusinessCardModel businessCardModel) {
+  static Widget sendEmail({required String email, String? sub, String? body}) {
     return AppButton(
       height: 50,
       width: Get.width,
       name: 'Send Email',
-      onTap: () async =>
-          await ContactService.sendEmail(businessCardModel.email!),
+      onTap: () async => await ContactService.sendEmail(
+        email: email,
+        sub: sub,
+        body: body,
+      ),
       icon: const Icon(Icons.email_outlined),
       textColor: Colors.white,
       buttonColor: Colors.orange[400],
@@ -185,12 +188,12 @@ class CustomWidgetElements {
     );
   }
 
-  static Widget connectWifi(WifiData wifiData) {
+  static Widget copyWifiPassword(WifiData wifiData) {
     return AppButton(
       height: 50,
       width: Get.width,
-      name: 'Connect Wifi',
-      onTap: () => CommonServices.connectToWifi(wifiData),
+      name: 'Copy Password',
+      onTap: () => CommonServices.copyToClipboard(wifiData.password),
       icon: const Icon(Icons.wifi),
       textColor: Colors.white,
       buttonColor: Colors.red[400],
